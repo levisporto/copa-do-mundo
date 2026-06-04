@@ -234,8 +234,13 @@ st.dataframe(jogadores_top, hide_index=True)
 
 
 
-st.markdown("### Público da Copa")
+st.markdown("### Público das Copas")
+publico = alt.Chart(df).mark_bar().encode(
+    x=alt.X('Ano:O',axis=alt.Axis(labelAngle=0)),
+    y=alt.Y("Attendance:Q", title="Público"),
+)
 
+st.altair_chart(publico)
 
 
 st.markdown("### Algumas curiosidades interessantes:")
@@ -243,3 +248,6 @@ st.markdown("> O país que sedia a copa tem 26% de chance de ganhar, mas o últi
 st.markdown("> Todas as 22 Copas foram vencidas por seleções europeias (12 títulos) ou sul-americanas (10 títulos). Nenhum outro continente foi campeão alguma vez!")
 st.markdown("> O país que mais terminou na segunda posição na história das Copas é a Alemanha: 4 vezes segundo lugar...")
 
+st.markdown("Obrigado pela atenção! Conecte-se comigo no LinkedIn *(https://www.linkedin.com/in/levisporto/)* ou veja o código desse Streamlit no Github: *(https://github.com/levisporto/copa-do-mundo)*.")
+
+st.image("bandeiras.jpg")
