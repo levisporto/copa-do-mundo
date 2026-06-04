@@ -209,7 +209,7 @@ jogadores_paises = {
     'Kylian Mbappé':        'França',  
     'Hristo Stoichkov, Oleg Salenko' : 'Bulgária e Rússia',
     'Wesley Sneijder, Thomas Müller...' : 'Holanda e Alemanha',
-    'Leonel Sánchez, Flórián Albert..':'Chile e Hungria'
+    'Leonel Sánchez, Flórián Albert...':'Chile e Hungria'
 }       
 
 
