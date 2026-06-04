@@ -76,7 +76,7 @@ df['Ano'] = df['Ano'].astype(str)
 #import matplotlib.pyplot as plt
 
 
-st.title("Copas do Mundo - 1930 to 2022")
+st.title("Copas do Mundo - 1930 a 2022")
 st.markdown("*Uma breve Exploração de Dados*")
 
 st.markdown("Olá! Meu nome é **Levi S. Porto** *(www.levisporto.com)* e eu fiquei curioso para saber alguns dados históricos sobre a *Copa do Mundo da FIFA*.")
