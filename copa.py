@@ -206,8 +206,11 @@ jogadores_paises = {
     'Thomas Müller':        'Alemanha',            # 2010  | 5
     'James Rodríguez':      'Colômbia',            # 2014  | 6
     'Harry Kane':           'Inglaterra',          # 2018  | 6
-    'Kylian Mbappé':        'França',              # 2022  | 8
-}
+    'Kylian Mbappé':        'França',  
+    'Hristo Stoichkov, Oleg Salenko' : 'Bulgária e Rússia',
+    'Wesley Sneijder, Thomas Müller...' : 'Holanda e Alemanha',
+    'Leonel Sánchez, Flórián Albert..':'Chile e Hungria'
+}       
 
 
 
