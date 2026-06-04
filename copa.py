@@ -159,7 +159,7 @@ flag_colors = {
 }
 
 chart = alt.Chart(times_vencedores).mark_bar().encode(
-    x=alt.X('Time:N', sort='-y'),
+    x=alt.X('Time:N', sort='-y',axis=alt.Axis(labelAngle=0)),
     y=alt.Y('Vitórias:Q'),
     color=alt.Color(
         'Time:N',
@@ -180,4 +180,66 @@ st.altair_chart(chart)
 st.dataframe(mais_tacas, hide_index=True)
 
 
+st.markdown("### Quais os jogadores que fizeram mais gols em copas?")
+
+
+jogadores_paises = {
+    # Jogador               País                  # Copa  | Gols
+    'Guillermo Stábile':    'Argentina',           # 1930  | 8
+    'Oldřich Nejedlý':      'Tchecoslováquia',     # 1934  | 5
+    'Leônidas':             'Brasil',              # 1938  | 7
+    'Ademir':               'Brasil',              # 1950  | 8
+    'Sándor Kocsis':        'Hungria',             # 1954  | 11
+    'Just Fontaine':        'França',              # 1958  | 13
+    'Garrincha':            'Brasil',              # 1962  | 4  (empate de 6 jogadores)
+    'Eusébio':              'Portugal',            # 1966  | 9
+    'Gerd Müller':          'Alemanha Ocidental',  # 1970  | 10
+    'Grzegorz Lato':        'Polônia',             # 1974  | 7
+    'Mario Kempes':         'Argentina',           # 1978  | 6
+    'Paolo Rossi':          'Itália',              # 1982  | 6
+    'Gary Lineker':         'Inglaterra',          # 1986  | 6
+    'Salvatore Schillaci':  'Itália',              # 1990  | 6
+    'Oleg Salenko':         'Rússia',              # 1994  | 6  (empate com Stoichkov)
+    'Davor Šuker':          'Croácia',             # 1998  | 6
+    'Ronaldo':              'Brasil',              # 2002  | 8
+    'Miroslav Klose':       'Alemanha',            # 2006  | 5
+    'Thomas Müller':        'Alemanha',            # 2010  | 5
+    'James Rodríguez':      'Colômbia',            # 2014  | 6
+    'Harry Kane':           'Inglaterra',          # 2018  | 6
+    'Kylian Mbappé':        'França',              # 2022  | 8
+}
+
+
+
+partes = df["TopScorrer"].str.rsplit(" - ", n=1, expand=True)
+
+jogadores_top = pd.DataFrame({
+    "Jogador": partes[0].str.strip(),
+    "Gols": partes[1].astype(int),
+    "Ano da Copa": df["Ano"].astype(int).values,
+})
+
+jogadores_top["Time"] = jogadores_top["Jogador"].map(jogadores_paises).fillna("—")
+
+
+# --- SORT (descending by goals) ---
+jogadores_top = jogadores_top.sort_values("Gols", ascending=False).reset_index(drop=True)
+jogadores_top['Gols'] = jogadores_top['Gols'].astype(str)
+jogadores_top['Ano da Copa'] = jogadores_top['Ano da Copa'].astype(str)
+# --- LOAD / display in Streamlit ---
+jogadores_top = jogadores_top[["Jogador", "Time", "Gols", "Ano da Copa"]]
+st.dataframe(jogadores_top, hide_index=True)
+
+
+
+
+
+st.markdown("### Público da Copa")
+
+
+
+st.markdown("### Algumas curiosidades interessantes:")
+st.markdown("> O país que sedia a copa tem 26% de chance de ganhar, mas o último anfitrião campeão foi a França há quase 30 anos.")
+st.markdown("> Todas as 22 Copas foram vencidas por seleções europeias (12 títulos) ou sul-americanas (10 títulos). Nenhum outro continente foi campeão alguma vez!")
+st.markdown("> O país que mais terminou na segunda posição na história das Copas é a Alemanha: 4 vezes segundo lugar...")
 
